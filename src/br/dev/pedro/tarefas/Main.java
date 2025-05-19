@@ -15,14 +15,13 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Funcionario funcionario1 = new Funcionario("Jonas");
-		Funcionario funcionario2 = new Funcionario();
+		Funcionario funcionario = new Funcionario();
 		
-		funcionario2.setMatricula(1);
-		funcionario2.setNome("Pedro");
-		funcionario2.setCargo("Porteiro");
+		funcionario.setMatricula(1);
+		funcionario.setNome("Pedro");
+		funcionario.setCargo("Porteiro");
 		
-		System.out.println(funcionario2);
+		System.out.println(funcionario);
 		
 
 	}
