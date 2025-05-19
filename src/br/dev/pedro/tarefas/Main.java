@@ -7,19 +7,29 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import br.dev.pedro.tarefas.model.Funcionario;
+
 public class Main {
 	
 	private static String path = "C:\\Users\\25132766\\ProjetoTarefas\\tarefas.txt";
 
 	public static void main(String[] args) {
 
+		Funcionario funcionario1 = new Funcionario("Jonas");
+		Funcionario funcionario2 = new Funcionario();
 		
-//		gravarArquivo();
-	lerArquivo();
+		funcionario2.setMatricula(1);
+		funcionario2.setNome("Pedro");
+		funcionario2.setCargo("Porteiro");
 		
+		System.out.println(funcionario2);
+		
+
 	}
 
+
 	
+	//Aprendendo manipular arquivos e diretorios
 	private static void gravarArquivo() {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -51,6 +61,8 @@ public class Main {
 				
 				String registro[] = line.split(";");
 				System.out.println("Nome: " + registro[0]);
+				System.out.println("Tarefa: " + registro[1]);
+				System.out.println("--------------------------");
 				line = br.readLine();
 			}
 
