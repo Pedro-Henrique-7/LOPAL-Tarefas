@@ -1,39 +1,40 @@
 package br.dev.pedro.tarefas.model;
 
+import br.dev.pedro.tarefas.utils.Utils;
+
 public class Funcionario {
 
 	private String nome;
-	private int matricula;
+	private String matricula;
 	private String cargo;
+	private double salario;
 
-	//constructor method
-	
-	
-	//default constructor
+	// constructor method
+
+	// default constructor
 	public Funcionario() {
-		
+		this.matricula = Utils.gerarUUID();
 	}
-	
+
 	public Funcionario(String nome) {
-		this.nome = nome; 
-		
+		this.nome = nome;
+		this.matricula = Utils.gerarUUID();
 	}
-	
+
 	public Funcionario(String nome, String cargo) {
 		this.cargo = cargo;
 		this.nome = nome;
+		this.matricula = Utils.gerarUUID();
 	}
-	
-	public Funcionario(String nome, String cargo, int matricula) {
+
+	public Funcionario(String nome, String cargo, double salario) {
 		this.cargo = cargo;
 		this.nome = nome;
-		this.matricula = matricula;
-		
-	
+		this.matricula = Utils.gerarUUID();
+		this.salario = salario;
+
 	}
-	
-	
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -42,11 +43,11 @@ public class Funcionario {
 		this.nome = nome;
 	}
 
-	public int getMatricula() {
-		return matricula;
-	}
+	public String getMatricula() {
+		return matricula ;
+}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula( String matricula) {
 		this.matricula = matricula;
 	}
 
@@ -57,13 +58,21 @@ public class Funcionario {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	
-	//sobrescrita do toString herdado da classe Objects
-	
+
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	// sobrescrita do toString herdado da classe Objects
+
 	@Override
 	public String toString() {
-		String funcionario = matricula + "," + nome + "," + cargo;
+		String funcionario = matricula + "," + nome + "," + cargo + "," + salario + "\n";
 		return funcionario;
 	}
-	
+
 }
