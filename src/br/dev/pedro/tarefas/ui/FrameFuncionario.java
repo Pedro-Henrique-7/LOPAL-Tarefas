@@ -30,6 +30,7 @@ public class FrameFuncionario {
 		tela.setTitle("Cadastro");
 		tela.setSize(400, 400);
 		tela.setResizable(false);
+		tela.setLayout(null);	
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setLocationRelativeTo(null);
 		
@@ -43,29 +44,43 @@ public class FrameFuncionario {
 		txtMatricula.setBounds(10, 40, 150, 30);
 		txtMatricula.setEnabled(false);
 		
-		
+		//nome
 		labelNome = new JLabel("Nome");
 		labelNome.setBounds(10, 75, 200, 30);
 		txtNome = new JTextField();
 		txtNome.setBounds(10, 105, 365, 30);
 		
+		//----------------------------------------
 		
+		
+		//cargo
 		labelCargo= new JLabel("Cargo");
 		labelCargo.setBounds(10, 140, 200, 30);
 		txtCargo = new JTextField();
 		txtCargo.setBounds(10, 170, 300, 30);
 		
+		//------------------------------------
+		
+		//salario
 		labelSalario= new JLabel("Salario");
 		labelSalario.setBounds(10, 205, 150, 30);
 		txtSalario = new JTextField();
 		txtSalario.setBounds(10, 235, 150, 30);
 		
+		//---------------------------------------
+		
+		//botão salvar
 		btnSave = new JButton("Salvar");
-		btnSave.setBounds(10, 265, 30, 30);
+		btnSave.setBounds(10, 300, 120, 50);
+		
+		//---------------------------------
+		
+		//botão sair
 		
 		btnSair = new JButton("Sair");
-		btnSair.setBounds(30, 265, 30, 30);
+		btnSair.setBounds(140, 300, 80, 50);
 		
+		//-----------------------------------
 		
 		painel.add(labelMatricula);
 		painel.add(txtMatricula);
@@ -81,5 +96,4 @@ public class FrameFuncionario {
 		
 		tela.setVisible(true);
 	}
-	
 }
