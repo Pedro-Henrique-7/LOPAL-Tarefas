@@ -20,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) {
 				
-		new FrameFuncionario();
+		new FrameFuncionarioList();
 //		Funcionario f = new Funcionario();
 //		f.setNome("Juliana");
 //		f.setCargo("Analista Senior");
