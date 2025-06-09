@@ -11,6 +11,7 @@ import java.util.UUID;
 import br.dev.pedro.tarefas.dao.FuncionarioDAO;
 import br.dev.pedro.tarefas.model.Funcionario;
 import br.dev.pedro.tarefas.ui.FrameFuncionario;
+import br.dev.pedro.tarefas.ui.FrameFuncionarioList;
 import br.dev.pedro.tarefas.utils.Utils;	
 
 public class Main {
@@ -20,63 +21,61 @@ public class Main {
 	public static void main(String[] args) {
 				
 		new FrameFuncionario();
+//		Funcionario f = new Funcionario();
+//		f.setNome("Juliana");
+//		f.setCargo("Analista Senior");
+//		f.setSalario(18820.00);
+//		
+//		FuncionarioDAO dao = new FuncionarioDAO(f);
+//		dao.gravar();
+
 	}
+
+	// Aprendendo manipular arquivos e diretorios
+	private static void gravarArquivo() {
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+
+		try {
+			fw = new FileWriter(path, true);
+			bw = new BufferedWriter(fw);
+			String newLine = "Isso é uma linha nova coco \n";
+
+			bw.write(newLine);
+			bw.flush();
+
+		} catch (Exception erro) {
+			System.out.println(erro.getMessage());
+		}
+
+	}
+
+	private static void lerArquivo() {
+		FileReader fr = null;
+		BufferedReader br = null;
+
+		try {
+			fr = new FileReader(path);
+			br = new BufferedReader(fr);
+
+			String line = br.readLine();
+
+			while (line != null) {
+
+				String registro[] = line.split(";");
+				System.out.println("Nome: " + registro[0]);
+				System.out.println("Tarefa: " + registro[1]);
+				System.out.println("--------------------------");
+				line = br.readLine();
+			}
+
+		} catch (FileNotFoundException erro) {
+			System.out.println(erro.getMessage());
+		} catch (IOException erro) {
+			System.out.println(erro.getMessage());
+		} catch (Exception erro) {
+			System.out.println(erro.getMessage());
+		}
+	}
+
 }
-////		Funcionario f = new Funcionario();
-////		f.setNome("Juliana");
-////		f.setCargo("Analista Senior");
-////		f.setSalario(18820.00);
-////		
-////		FuncionarioDAO dao = new FuncionarioDAO(f);
-////		dao.gravar();
-//
-//	}
-//
-//	// Aprendendo manipular arquivos e diretorios
-//	private static void gravarArquivo() {
-//		FileWriter fw = null;
-//		BufferedWriter bw = null;
-//
-//		try {
-//			fw = new FileWriter(path, true);
-//			bw = new BufferedWriter(fw);
-//			String newLine = "Isso é uma linha nova coco \n";
-//
-//			bw.write(newLine);
-//			bw.flush();
-//
-//		} catch (Exception erro) {
-//			System.out.println(erro.getMessage());
-//		}
-//
-//	}
-//
-//	private static void lerArquivo() {
-//		FileReader fr = null;
-//		BufferedReader br = null;
-//
-//		try {
-//			fr = new FileReader(path);
-//			br = new BufferedReader(fr);
-//
-//			String line = br.readLine();
-//
-//			while (line != null) {
-//
-//				String registro[] = line.split(";");
-//				System.out.println("Nome: " + registro[0]);
-//				System.out.println("Tarefa: " + registro[1]);
-//				System.out.println("--------------------------");
-//				line = br.readLine();
-//			}
-//
-//		} catch (FileNotFoundException erro) {
-//			System.out.println(erro.getMessage());
-//		} catch (IOException erro) {
-//			System.out.println(erro.getMessage());
-//		} catch (Exception erro) {
-//			System.out.println(erro.getMessage());
-//		}
-//	}
-//
-//}

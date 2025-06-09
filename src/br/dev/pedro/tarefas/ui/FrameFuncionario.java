@@ -1,30 +1,35 @@
 package br.dev.pedro.tarefas.ui;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import br.dev.pedro.tarefas.dao.FuncionarioDAO;
+import br.dev.pedro.tarefas.model.Funcionario;
 
 public class FrameFuncionario {
 	private JLabel labelMatricula;
 	private JLabel labelNome;
 	private JLabel labelCargo;
 	private JLabel labelSalario;
-	
 	private JTextField txtMatricula;
 	private JTextField txtNome;
 	private JTextField txtCargo;
 	private JTextField txtSalario;
-	
+
 	private JButton btnSave;
 	private JButton btnSair;
-	
-	public FrameFuncionario(){
+
+	public FrameFuncionario() {
 		criarTela();
 	}
-	
+
 	private void criarTela() {
 		JFrame tela = new JFrame();
 		tela.setTitle("Cadastro");
@@ -94,6 +99,68 @@ public class FrameFuncionario {
 		painel.add(btnSair);
 		
 		
-		tela.setVisible(true);
+		//Funcionalidades dos Botões
+		btnSave.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//salvar conteudo dos txt em variaveis
+				String nome = txtNome.getText();
+				String cargo = txtCargo.getText();
+				
+				//salvar salario como double e transformar salario em string
+				double salario = Double.parseDouble(txtSalario.getText());
+				
+				//criando novo funcionario e definindo oque ele vai receber
+				Funcionario f = new Funcionario(nome, cargo, salario);
+				
+				//gravar funcionario no arquivo
+				FuncionarioDAO dao = new FuncionarioDAO(f);
+				dao.gravar();
+				
+				//mensagem para indicar que o cadastro foi finalizado
+				
+				JOptionPane.showMessageDialog(tela,nome + "\ncadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+				limparFormulario();
+				
+				
+			}
+		});
+		
+		
+		//Sair da tela caso o usuario queira
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//armazenando resposta do JOptionPane que retorna 0 para sim e outro valor para qualquer outra resposta
+				
+				int resposta = JOptionPane.showConfirmDialog(tela, "Você tem certeza que deseja sair do cadastro? ");
+				
+				if (resposta == 0) {
+					//fechar tela caso resposta for 0
+					tela.dispose();	
+				}
+				
+			}
+			
+		});
+		
+		tela.setVisible(true);	
+	
+		}
+
+	// limpar formulario após o preenchimento
+	public void limparFormulario() {
+		txtNome.setText(null);
+
+		// retomar o foco para o campo nome
+		txtNome.requestFocus();
+
+		txtCargo.setText(null);
+		txtSalario.setText(null);
 	}
+
 }
