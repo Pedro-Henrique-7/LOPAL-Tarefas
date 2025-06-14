@@ -13,6 +13,7 @@ import br.dev.pedro.tarefas.model.Funcionario;
 import br.dev.pedro.tarefas.ui.FrameFuncionario;
 import br.dev.pedro.tarefas.ui.FrameFuncionarioList;
 import br.dev.pedro.tarefas.ui.FrameGerenciador;
+import br.dev.pedro.tarefas.ui.FrameTarefas;
 import br.dev.pedro.tarefas.utils.Utils;	
 
 public class Main {

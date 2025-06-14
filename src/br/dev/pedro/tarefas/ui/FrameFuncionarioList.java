@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,7 @@ import br.dev.pedro.tarefas.model.Funcionario;
 public class FrameFuncionarioList {
 	private JLabel labelTitulo;
 	private JButton btnCadastro;
+	private JButton btnSair;
 	private JTable tabelaFuncionarios;
 	private JScrollPane scrollFuncionarios;
 	private DefaultTableModel modelFuncionarios;
@@ -41,7 +43,7 @@ public class FrameFuncionarioList {
 		tela.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		tela.setLocationRelativeTo(null);
 
-		labelTitulo = new JLabel("Cadastro de Funcionarios: ");
+		labelTitulo = new JLabel("Lista de Funcionarios: ");
 		labelTitulo.setFont(new Font("Arial", Font.BOLD, 24));
 		labelTitulo.setBounds(10, 10, 400, 40);
 		
@@ -77,6 +79,9 @@ public class FrameFuncionarioList {
 		btnCadastro = new JButton("Cadastrar");
 		btnCadastro.setBounds(10, 410, 200, 40);
 		
+		btnSair = new JButton("Sair");
+		btnSair.setBounds(240, 410, 200, 40);
+		
 		btnCadastro.addActionListener(new ActionListener() {
 			
 			
@@ -89,12 +94,32 @@ public class FrameFuncionarioList {
 			}
 		});
 		
+		
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			int resposta = JOptionPane.showConfirmDialog(tela, "Você tem certeza que deseja sair do cadastro? ");
+							
+							if (resposta == 0) {
+								//fechar tela caso resposta for 0
+								tela.dispose();	
+							}
+			}
+		});
+		
+		
+		
+		
+		
 		// Criando variável do container da tela
 		Container painel = tela.getContentPane();
 		// Adicionando componentes no container
 		painel.add(labelTitulo);
 		painel.add(scrollFuncionarios);
 		painel.add(btnCadastro);
+		painel.add(btnSair);
 
 		
 		tela.setVisible(true);

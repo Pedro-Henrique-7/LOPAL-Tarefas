@@ -7,29 +7,58 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileFactory {
-	private String arquivo = "C:\\Users\\Pedro\\Documents\\ProjetoTarefas\\funcionarios.csv";
-	
+	private String arquivoFuncinario = "C:\\Users\\Pedro\\Documents\\ProjetoTarefas\\funcionarios.csv";
+	private String arquivoTarefas = "C:\\Users\\Pedro\\Documents\\ProjetoTarefas\\tarefas.csv";
 	//Funcionario
 	private FileWriter fwf;
 	private BufferedWriter bwf;
 	private FileReader frf;
 	private BufferedReader brf;
 	
+	//tarefas
+	private FileWriter fwt;
+	private BufferedWriter bwt;
+	private FileReader frt;
+	private BufferedReader brt;
+	
+	
 	public FileFactory() throws IOException {
-		fwf = new FileWriter(arquivo, true); //true indica que o arquivo vai ser aberto em modo de edição
+		//funcionario
+		fwf = new FileWriter(arquivoFuncinario, true); //true indica que o arquivo vai ser aberto em modo de edição
 		bwf = new BufferedWriter(fwf);
 		
-		frf = new FileReader(arquivo);
+		frf = new FileReader(arquivoFuncinario);
 		brf = new BufferedReader(frf);
+		
+		//tarefas
+		
+		fwt = new FileWriter(arquivoTarefas, true);
+		bwt = new BufferedWriter(fwt);
+		
+		frt = new FileReader(arquivoTarefas);
+		brt = new BufferedReader(frt);
+		
+		
 	}
 	
-	public BufferedWriter getBufferedWriter() {
-		return bwf;
+	public BufferedWriter getBufferedWriterFuncionario() {
+		return bwt;
+
+	}
+	
+	public BufferedWriter getBufferedWriterTarefas() {
+		return bwt;
+		
 	}
 
 	public BufferedReader getBufferedReaderFuncionario() {
 		
 		return brf;
+	}
+	
+	public BufferedReader getBufferedReaderTarefas() {
+		
+		return brt;
 	}
 	
 }

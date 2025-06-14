@@ -23,8 +23,8 @@ public class FuncionarioDAO {
 		
 		try {
 			FileFactory ff = new FileFactory();
-			ff.getBufferedWriter().write(funcionario.toString());
-			ff.getBufferedWriter().flush();
+			ff.getBufferedWriterFuncionario().write(funcionario.toString());
+			ff.getBufferedWriterFuncionario().flush();
 		} catch (IOException e) {
 			
 			e.printStackTrace();

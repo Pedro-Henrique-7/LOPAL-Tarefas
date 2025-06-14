@@ -50,6 +50,15 @@ public class FrameGerenciador {
 		});
 		 
 		
+		btnTarefas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new FrameTarefas();
+			}
+		});
+		
 		painel.add(btnFuncinarios);
 		painel.add(btnTarefas);
 		
