@@ -23,6 +23,9 @@ public class Tarefa {
 		this.responsavel = responsavel;
 		this.codigo = codigo;
 	}
+	public Tarefa() {
+		
+	}
 	public String getTituloTarefa() {
 		return tituloTarefa;
 	}

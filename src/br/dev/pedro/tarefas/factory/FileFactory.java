@@ -42,7 +42,7 @@ public class FileFactory {
 	}
 	
 	public BufferedWriter getBufferedWriterFuncionario() {
-		return bwt;
+		return bwf ;
 
 	}
 	

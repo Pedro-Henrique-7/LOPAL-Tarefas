@@ -1,12 +1,16 @@
 package br.dev.pedro.tarefas.ui;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import br.dev.pedro.tarefas.model.Tarefa;
 
 public class FrameTarefas {
 
@@ -85,6 +89,28 @@ public class FrameTarefas {
 
         btnSair = new JButton("Sair");
         btnSair.setBounds(180, 300, 100, 30);
+        
+        
+        btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				//salvando conteudo do txt em variaveis
+				String titulo = txtTitulo.getText();
+				String descricao = txtDescricao.getText();
+				String dataInicial = txtDataInicial.getText();
+				String prazo = txtPrazo.getText();
+				String dataConclusao = txtDataConclusao.getText();
+				
+				//criando nova tarefa e definindo parametros 
+				Tarefa t = new Tarefa(titulo, descricao, dataInicial, prazo, dataConclusão)
+				
+			}
+		});
+        
+        
     }
 
     private void adicionarComponentes() {
