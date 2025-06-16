@@ -1,5 +1,7 @@
 package br.dev.pedro.tarefas.model;
 
+import java.time.LocalDate;
+
 import br.dev.pedro.tarefas.dao.FuncionarioDAO;
 import br.dev.pedro.tarefas.utils.Utils;
 
@@ -9,14 +11,14 @@ public class Tarefa {
 	private String descricaoTarefa;
 	private String dataTarefa;
 	private int prazo;
-	private String dataConclusao;
+	private LocalDate dataConclusao;
 	private String status;
 	private String responsavel;
 	private String codigo;
 	
 	
-	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, String dataConclusao,
-			String status, String responsavel, String codigo) {
+	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, LocalDate dataConclusao,
+			String status, String responsavel) {
 		
 		this.tituloTarefa = tituloTarefa;
 		this.descricaoTarefa = descricaoTarefa;
@@ -27,7 +29,7 @@ public class Tarefa {
 		this.responsavel = responsavel;
 		this.codigo = Utils.gerarUUID();
 	}
-	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, String dataConclusao) {
+	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, LocalDate dataConclusao) {
 		this.tituloTarefa = tituloTarefa;
 		this.descricaoTarefa = descricaoTarefa;
 		this.dataTarefa = dataTarefa;
@@ -62,10 +64,10 @@ public class Tarefa {
 	public void setPrazo(int prazo) {
 		this.prazo = prazo;
 	}
-	public String getDataConclusao() {
+	public LocalDate getDataConclusao() {
 		return dataConclusao;
 	}
-	public void setDataConclusao(String dataConclusao) {
+	public void setDataConclusao(LocalDate dataConclusao) {
 		this.dataConclusao = dataConclusao;
 	}
 	public String getStatus() {
@@ -89,7 +91,6 @@ public class Tarefa {
 		String tarefa = tituloTarefa + "," + descricaoTarefa + "," + dataTarefa + "," + prazo + "," + dataConclusao + "," + status + "," + responsavel + "," + codigo +"\n";
 		return tarefa;
 	}
-	
 
 	
 }

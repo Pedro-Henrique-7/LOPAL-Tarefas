@@ -4,6 +4,10 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.PublicKey;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import br.dev.pedro.tarefas.dao.FuncionarioDAO;
 import br.dev.pedro.tarefas.dao.TarefasDAO;
+import br.dev.pedro.tarefas.model.Funcionario;
 import br.dev.pedro.tarefas.model.Status;
 import br.dev.pedro.tarefas.model.Tarefa;
 
@@ -22,11 +28,12 @@ public class FrameTarefas {
     private JLabel labelTitulo, labelDescricao, labelDataInicial, labelPrazo, labelDataConclusao, labelStatus, labelResponsavel;
     private JTextField txtTitulo, txtDescricao, txtDataInicial, txtPrazo, txtDataConclusao;
     private JComboBox<Status> cbStatus; 
-    private JComboBox<String>cbResponsavel;
+    private JComboBox<String> cbResponsavel;
     private JButton btnSalvar, btnSair;
     
     //variavel para armazenar o status
     private Status statusSelecionado;
+    private String funcionarioSelecionado;
 
     private JFrame tela;
     private Container painel;
@@ -35,6 +42,7 @@ public class FrameTarefas {
         tela = new JFrame();
 
         tela.setTitle("Cadastro de tarefas");
+        
         tela.setSize(350, 400);
         tela.setLayout(null);
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -85,6 +93,7 @@ public class FrameTarefas {
         cbStatus = new JComboBox<Status>();
         cbStatus.setBounds(10, 210, 300, 20);
         
+
         //obter os valores do enum
         Status[] status = Status.values();
         
@@ -92,29 +101,33 @@ public class FrameTarefas {
         
         for(Status estado : status) {
         	cbStatus.addItem(estado);
-        }
-        
-        //capturar a seleção do combobox
-        cbStatus.addActionListener(new ActionListener () {
-        	
-        	@Override
-        	public void actionPerformed(ActionEvent e) {
-        	
-        		statusSelecionado = (Status) cbStatus.getSelectedItem();
+        }	
+        statusSelecionado = (Status) cbStatus.getSelectedItem();
         		
-        	}
-        	
-        });
-        
         
         
         labelResponsavel = new JLabel("Responsável:");
         labelResponsavel.setBounds(10, 235, 100, 20);
-
+        
         cbResponsavel = new JComboBox<>();
         cbResponsavel.setBounds(10, 255, 300, 20);
-        cbResponsavel.addItem("Nome do funcionário");
+        
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> funcionarios = dao.listar();
+        		
+        String[][] responsaveis = new String[funcionarios.size()][9];
+        int i = 0;
+        for (Funcionario f : funcionarios) {
+        	responsaveis[0][0] = f.getNome();
+        	i++;
+        	
+        	cbResponsavel.addItem(responsaveis[0][0].toString());
+        }
+        
+        funcionarioSelecionado = (String) cbResponsavel.getSelectedItem();
+	
 
+        
         btnSalvar = new JButton("Salvar");
         btnSalvar.setBounds(40, 300, 100, 30);
 
@@ -133,11 +146,16 @@ public class FrameTarefas {
 				String descricao = txtDescricao.getText();
 				String dataInicial = txtDataInicial.getText();
 				int prazo = Integer.parseInt( txtPrazo.getText());
-				String dataConclusao = txtDataConclusao.getText();
+
 				Status status = statusSelecionado;
-	
+				String responsavel = funcionarioSelecionado;
+				
+				DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
+				LocalDate data = LocalDate.parse(dataInicial, parser);
+				LocalDate dataConclusao = data.plusDays(prazo);
+				
 				//criando nova tarefa e definindo parametros 
-				Tarefa t = new Tarefa(titulo, descricao, dataInicial, prazo, dataConclusao, status.toString() , status.toString(), status.toString());
+				Tarefa t = new Tarefa(titulo, descricao, dataInicial, prazo, dataConclusao, status.toString() , responsavel);
 				
 				//gravar tarefa no arquivo
 				TarefasDAO dao = new TarefasDAO(t);
