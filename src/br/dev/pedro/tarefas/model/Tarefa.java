@@ -1,5 +1,7 @@
 package br.dev.pedro.tarefas.model;
 
+import br.dev.pedro.tarefas.dao.FuncionarioDAO;
+import br.dev.pedro.tarefas.utils.Utils;
 
 public class Tarefa {
 
@@ -11,6 +13,8 @@ public class Tarefa {
 	private String status;
 	private String responsavel;
 	private String codigo;
+	
+	
 	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, String dataConclusao,
 			String status, String responsavel, String codigo) {
 		
@@ -21,10 +25,18 @@ public class Tarefa {
 		this.dataConclusao = dataConclusao;
 		this.status = status;
 		this.responsavel = responsavel;
-		this.codigo = codigo;
+		this.codigo = Utils.gerarUUID();
+	}
+	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, String dataConclusao) {
+		this.tituloTarefa = tituloTarefa;
+		this.descricaoTarefa = descricaoTarefa;
+		this.dataTarefa = dataTarefa;
+		this.prazo = prazo;
+		this.dataConclusao = dataConclusao;
+		this.codigo = Utils.gerarUUID();
 	}
 	public Tarefa() {
-		
+		this.codigo = Utils.gerarUUID();	
 	}
 	public String getTituloTarefa() {
 		return tituloTarefa;
@@ -74,7 +86,7 @@ public class Tarefa {
 	
 	@Override
 	public String toString() {
-		String tarefa = tituloTarefa + "," + descricaoTarefa + "," + dataTarefa + "," + prazo + "," + dataConclusao + "," + status + "," + responsavel + "," + codigo;
+		String tarefa = tituloTarefa + "," + descricaoTarefa + "," + dataTarefa + "," + prazo + "," + dataConclusao + "," + status + "," + responsavel + "," + codigo +"\n";
 		return tarefa;
 	}
 	

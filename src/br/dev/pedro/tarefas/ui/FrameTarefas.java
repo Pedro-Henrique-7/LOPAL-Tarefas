@@ -3,13 +3,17 @@ package br.dev.pedro.tarefas.ui;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.PublicKey;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import br.dev.pedro.tarefas.dao.TarefasDAO;
+import br.dev.pedro.tarefas.model.Status;
 import br.dev.pedro.tarefas.model.Tarefa;
 
 public class FrameTarefas {
@@ -17,8 +21,12 @@ public class FrameTarefas {
     // Componentes da interface
     private JLabel labelTitulo, labelDescricao, labelDataInicial, labelPrazo, labelDataConclusao, labelStatus, labelResponsavel;
     private JTextField txtTitulo, txtDescricao, txtDataInicial, txtPrazo, txtDataConclusao;
-    private JComboBox<String> cbStatus, cbResponsavel;
+    private JComboBox<Status> cbStatus; 
+    private JComboBox<String>cbResponsavel;
     private JButton btnSalvar, btnSair;
+    
+    //variavel para armazenar o status
+    private Status statusSelecionado;
 
     private JFrame tela;
     private Container painel;
@@ -29,7 +37,7 @@ public class FrameTarefas {
         tela.setTitle("Cadastro de tarefas");
         tela.setSize(350, 400);
         tela.setLayout(null);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setLocationRelativeTo(null);
 
         painel = tela.getContentPane();
@@ -74,9 +82,32 @@ public class FrameTarefas {
         labelStatus = new JLabel("Status:");
         labelStatus.setBounds(10, 190, 100, 20);
 
-        cbStatus = new JComboBox<>(new String[]{"NÃO INICIADO", "EM ANDAMENTO", "CONCLUÍDO"});
+        cbStatus = new JComboBox<Status>();
         cbStatus.setBounds(10, 210, 300, 20);
-
+        
+        //obter os valores do enum
+        Status[] status = Status.values();
+        
+        //adicionar valores ao combobox
+        
+        for(Status estado : status) {
+        	cbStatus.addItem(estado);
+        }
+        
+        //capturar a seleção do combobox
+        cbStatus.addActionListener(new ActionListener () {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        	
+        		statusSelecionado = (Status) cbStatus.getSelectedItem();
+        		
+        	}
+        	
+        });
+        
+        
+        
         labelResponsavel = new JLabel("Responsável:");
         labelResponsavel.setBounds(10, 235, 100, 20);
 
@@ -101,11 +132,18 @@ public class FrameTarefas {
 				String titulo = txtTitulo.getText();
 				String descricao = txtDescricao.getText();
 				String dataInicial = txtDataInicial.getText();
-				String prazo = txtPrazo.getText();
+				int prazo = Integer.parseInt( txtPrazo.getText());
 				String dataConclusao = txtDataConclusao.getText();
-				
+				Status status = statusSelecionado;
+	
 				//criando nova tarefa e definindo parametros 
-				Tarefa t = new Tarefa(titulo, descricao, dataInicial, prazo, dataConclusão)
+				Tarefa t = new Tarefa(titulo, descricao, dataInicial, prazo, dataConclusao, status.toString() , status.toString(), status.toString());
+				
+				//gravar tarefa no arquivo
+				TarefasDAO dao = new TarefasDAO(t);
+				dao.gravar();
+				
+				JOptionPane.showMessageDialog(tela,titulo + "\ncadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});

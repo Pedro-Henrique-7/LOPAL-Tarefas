@@ -2,6 +2,11 @@ package br.dev.pedro.tarefas.model;
 
 public enum Status {
 	
-	NAO_INICIADO, EM_ANDAMENTO, ENTREGUE, PENDENTE
+	SELECIONE_UM_STATUS,
+	NAO_INICIADO,
+	EM_ANDAMENTO,
+	ENTREGUE,
+	PENDENTE
 	
 }
+

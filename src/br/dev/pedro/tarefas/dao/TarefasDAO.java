@@ -59,7 +59,9 @@ public class TarefasDAO {
 					tarefa.setPrazo(prazo);
 					tarefa.setDataConclusao(tarefasStr[4]);
 					
-
+					//adicionando tarefa á lista tarefas
+					tarefas.add(tarefa);
+					
 				}
 			}
 			
