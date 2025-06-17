@@ -11,13 +11,13 @@ public class Tarefa {
 	private String descricaoTarefa;
 	private String dataTarefa;
 	private int prazo;
-	private LocalDate dataConclusao;
+	private String dataConclusao;
 	private String status;
 	private String responsavel;
 	private String codigo;
 	
 	
-	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, LocalDate dataConclusao,
+	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, String dataConclusao,
 			String status, String responsavel) {
 		
 		this.tituloTarefa = tituloTarefa;
@@ -29,7 +29,7 @@ public class Tarefa {
 		this.responsavel = responsavel;
 		this.codigo = Utils.gerarUUID();
 	}
-	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, LocalDate dataConclusao) {
+	public Tarefa(String tituloTarefa, String descricaoTarefa, String dataTarefa, int prazo, String dataConclusao) {
 		this.tituloTarefa = tituloTarefa;
 		this.descricaoTarefa = descricaoTarefa;
 		this.dataTarefa = dataTarefa;
@@ -64,10 +64,10 @@ public class Tarefa {
 	public void setPrazo(int prazo) {
 		this.prazo = prazo;
 	}
-	public LocalDate getDataConclusao() {
+	public String getDataConclusao() {
 		return dataConclusao;
 	}
-	public void setDataConclusao(LocalDate dataConclusao) {
+	public void setDataConclusao(String dataConclusao) {
 		this.dataConclusao = dataConclusao;
 	}
 	public String getStatus() {
