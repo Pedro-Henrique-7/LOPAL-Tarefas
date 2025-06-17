@@ -7,8 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileFactory {
-	private String arquivoFuncinario = "C:\\Users\\25132766\\ProjetoTarefas\\funcionarios.csv";
-	private String arquivoTarefas = "C:\\Users\\25132766\\ProjetoTarefas\\tarefas.csv";
+	private String arquivoFuncinario = "C:\\Users\\Pedro\\Documents\\ProjetoTarefas\\funcionarios.csv";
+	private String arquivoTarefas = "C:\\Users\\Pedro\\Documents\\ProjetoTarefas\\tarefas.csv";
 	//Funcionario
 	private FileWriter fwf;
 	private BufferedWriter bwf;
