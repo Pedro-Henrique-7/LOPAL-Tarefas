@@ -86,6 +86,10 @@ public class Tarefa {
 		return codigo;
 	}
 	
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	
 	@Override
 	public String toString() {
 		String tarefa = tituloTarefa + "," + descricaoTarefa + "," + dataTarefa + "," + prazo + "," + dataConclusao + "," + status + "," + responsavel + "," + codigo +"\n";

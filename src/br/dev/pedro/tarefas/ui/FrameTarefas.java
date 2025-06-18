@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -112,7 +113,6 @@ public class FrameTarefas {
 		for (Status estado : status) {
 			cbStatus.addItem(estado);
 		}
-		statusSelecionado = (Status) cbStatus.getSelectedItem();
 
 		cbResponsavel = new JComboBox<>();
 		cbResponsavel.setBounds(10, 255, 300, 20);
@@ -133,7 +133,7 @@ public class FrameTarefas {
 		FuncionarioDAO dao = new FuncionarioDAO();
 		List<Funcionario> funcionarios = dao.listar();
 
-		String[][] responsaveis = new String[funcionarios.size()][9];
+		String[][] responsaveis = new String[funcionarios.size()][1];
 		int i = 0;
 		for (Funcionario f : funcionarios) {
 			responsaveis[0][0] = f.getNome();
@@ -142,7 +142,6 @@ public class FrameTarefas {
 			cbResponsavel.addItem(responsaveis[0][0].toString());
 		}
 
-		funcionarioSelecionado = (String) cbResponsavel.getSelectedItem();
 	}
 
 	private void calcularConclusão() {
@@ -189,8 +188,9 @@ public class FrameTarefas {
 	private void configurarEventos() {
 
 		txtPrazo.getDocument().addDocumentListener(new DocumentListener() {
-			//configurando que em todos as alterações no prazo vai ser acionada a função calcularConclusão
-			
+			// configurando que em todos as alterações no prazo vai ser acionada a função
+			// calcularConclusão
+
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				calcularConclusão();
@@ -213,6 +213,9 @@ public class FrameTarefas {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				funcionarioSelecionado = (String) cbResponsavel.getSelectedItem();
+				statusSelecionado = (Status) cbStatus.getSelectedItem();
+
 				// Validação dos campos obrigatórios
 				if (txtTitulo.getText().trim().isEmpty() || txtDescricao.getText().trim().isEmpty()
 						|| txtDataInicial.getText().trim().isEmpty() || txtPrazo.getText().trim().isEmpty()
@@ -221,7 +224,8 @@ public class FrameTarefas {
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				} else {
-					// salvando conteudo do txt em variaveis
+					// salvando conteudo do txt em
+
 					String titulo = txtTitulo.getText();
 					String descricao = txtDescricao.getText();
 					String dataInicial = txtDataInicial.getText();
